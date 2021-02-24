@@ -14,27 +14,31 @@ export function Countdown() {
       setActive(false);
       setTime(25 * 60);
     }
+  }, [active, time]);
 
-  }, [active, time])
+  const minutes = useMemo(
+    () =>
+      // sempre irei arredondar o numero p baixo
+      Math.floor(time / 60),
+    [time],
+  );
 
+  const seconds = useMemo(
+    () =>
+      // sempre irei arredondar o numero p baixo
+      Math.floor(time % 60),
+    [time],
+  );
 
-  const minutes = useMemo(() => {
-    // sempre irei arredondar o numero p baixo
-    return Math.floor(time / 60);
-  }, [time]);
+  const [minuteLeft, minuteRigth] = useMemo(
+    () => String(minutes).padStart(2, '0').split(''),
+    [minutes],
+  );
 
-  const seconds = useMemo(() => {
-    // sempre irei arredondar o numero p baixo
-    return Math.floor(time % 60);
-  }, [time]);
-
-  const [minuteLeft, minuteRigth] = useMemo(() => {
-    return String(minutes).padStart(2, '0').split('');
-  }, [time])
-
-  const [secondLeft, secondRigth] = useMemo(() => {
-    return String(seconds).padStart(2, '0').split('');
-  }, [time])
+  const [secondLeft, secondRigth] = useMemo(
+    () => String(seconds).padStart(2, '0').split(''),
+    [seconds],
+  );
 
   const startCountdown = useCallback(() => {
     setActive(true);
@@ -53,7 +57,13 @@ export function Countdown() {
           <span>{secondRigth}</span>
         </div>
       </div>
-      <button type="button" onClick={startCountdown} className={style.countdonwButton}>Iniciar um ciclo</button>
+      <button
+        type="button"
+        onClick={startCountdown}
+        className={style.countdonwButton}
+      >
+        Iniciar um ciclo
+      </button>
     </div>
-  )
+  );
 }

@@ -1,10 +1,9 @@
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { Countdown } from "../components/Countdown";
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
+import Head from 'next/head';
+import { CompletedChallenges } from '../components/CompletedChallenges';
+import { Countdown } from '../components/Countdown';
+import { ExperienceBar } from '../components/ExperienceBar';
+import { Profile } from '../components/Profile';
 import styles from '../styles/pages/Home.module.css';
-import Head from 'next/head'
-
 
 export default function Home() {
   return (
@@ -12,15 +11,15 @@ export default function Home() {
       <Head>
         <title>Inicio | move.it</title>
       </Head>
-      <ExperienceBar></ExperienceBar>
+      <ExperienceBar />
       <section>
         <div>
-          <Profile></Profile>
-          <CompletedChallenges></CompletedChallenges>
-          <Countdown></Countdown>
+          <Profile />
+          <CompletedChallenges />
+          <Countdown />
         </div>
-        <div></div>
+        <div />
       </section>
     </div>
-  )
+  );
 }
